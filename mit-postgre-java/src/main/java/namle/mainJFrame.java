@@ -5,6 +5,14 @@
  */
 package namle;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import namle.helper.animate.Animate;
+import namle.panel.ungvienJPanel;
+
 /**
  *
  * @author Nam Le
@@ -16,6 +24,8 @@ public class mainJFrame extends javax.swing.JFrame {
      */
     public mainJFrame() {
         initComponents();
+        //setLayout(new BorderLayout());
+
     }
 
     /**
@@ -28,17 +38,22 @@ public class mainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnThemPhong = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empoyee Query Viewer");
         setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("mainF"); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Quản trị Nhân viên");
 
-        jButton1.setText("Thêm Nhân viên");
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        jButton1.setText("Thêm Ứng viên");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -52,28 +67,46 @@ public class mainJFrame extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThemPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnThemPhong)
+                .addContainerGap(359, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton1)
-                    .addComponent(btnThemPhong))
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addComponent(jLabel6)
+                .addGap(502, 511, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(btnThemPhong)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,12 +114,22 @@ public class mainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+
         ungvienJFrame nvForm = new ungvienJFrame();
         nvForm.pack();
         nvForm.show();
-    }//GEN-LAST:event_jButton1MouseClicked
 
+//        ungvienJPanel uvp = new ungvienJPanel();
+//        add(uvp, BorderLayout.CENTER);
+//        setVisible(true);
+//        uvp.setSize(500, 500);
+//        setLayout(new GridLayout());
+//        Rectangle from = new Rectangle(100,100, uvp.getWidth(), uvp.getHeight());
+//        Rectangle to = new Rectangle(110, 110, uvp.getWidth(), uvp.getHeight());
+//        Animate animate = new Animate(uvp, to, from);
+//        animate.start();
+    }//GEN-LAST:event_jButton1MouseClicked
+//        
     private void btnThemPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemPhongMouseClicked
         phongJFrame pForm = new phongJFrame();
         pForm.pack();
@@ -132,5 +175,6 @@ public class mainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnThemPhong;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

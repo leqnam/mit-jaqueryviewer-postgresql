@@ -45,10 +45,11 @@ public class ungvienJFrame extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Thêm Ứng viên");
         setAlwaysOnTop(true);
         setName("nhanvienjFrame"); // NOI18N
         setResizable(false);
+        setType(java.awt.Window.Type.UTILITY);
 
         jLabel1.setText("Tên");
 
@@ -164,17 +165,21 @@ public class ungvienJFrame extends javax.swing.JFrame {
         String sdt = txtSdt.getText();
         java.sql.Date ngay = util.getCurrentDate();
         //Date ngay = (util.dateTimeToDateTime(util.getCurrentDateTimeToString()));
-        UngVien nv = new UngVien(ma, ten, email, sdt, dc, ngay );
-        try {
-            UngVien insert = new UngVienService().addNew(nv);
-            if (insert != null) {
-                util.showMessageBox(this, "Thêm Ứng viên hoàn tất");
-                closeForm();
+        if (ten.isEmpty() || email.isEmpty() || dc.isEmpty() || sdt.isEmpty())
+            util.showMessageBox(this, "Không được rỗng!");
+        else {
+            UngVien nv = new UngVien(ma, ten, email, sdt, dc, ngay );
+            try {
+                UngVien insert = new UngVienService().addNew(nv);
+                if (insert != null) {
+                    util.showMessageBox(this, "Thêm Ứng viên hoàn tất");
+                    closeForm();
+                }
+            } catch (SQLException ex) {
+                util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
+            } catch (Exception ex) {
+                util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
             }
-        } catch (SQLException ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
-        } catch (Exception ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
         }
     }//GEN-LAST:event_btnLuuMouseClicked
 
