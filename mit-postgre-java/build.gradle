@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+//[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+compileJava { 
+  options.encoding = 'UTF-8' 
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+//allprojects {
+//    tasks.withType(JavaCompile) {
+//        options.encoding = 'UTF-8'
+//    }
+//        
+//    tasks.withType(Test) {
+//       systemProperty "file.encoding", 'UTF-8'
+//    }
+//}
+
+mainClassName = 'namle.Main'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    runtime fileTree(dir: 'libs', include: '*.jar')
+    compile files("src/main/resources")
+}
