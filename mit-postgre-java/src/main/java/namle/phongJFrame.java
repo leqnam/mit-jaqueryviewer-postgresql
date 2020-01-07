@@ -144,7 +144,7 @@ public class phongJFrame extends javax.swing.JFrame {
     }
     
     private void btnLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLuuMouseClicked
-        Integer ma = (int)(Math.random()*100);
+        long ma = util.getCurrentTimeMilliseconds();
         String ten = txtTen.getText();
         String dc = txtDiachi.getText();
         String sdt = txtSdt.getText();
@@ -156,9 +156,9 @@ public class phongJFrame extends javax.swing.JFrame {
                 closeForm();
             }
         } catch (SQLException ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!");
+            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
         } catch (Exception ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!");
+            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
         }
     }//GEN-LAST:event_btnLuuMouseClicked
 

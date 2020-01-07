@@ -10,23 +10,23 @@ package namle.model;
  * @author Nam Le
  */
 public class Phong {
-    private Integer MaPhong;
+    private long MaPhong;
     private String TenPhong;
     private String SdtPhong;
     private String DiachiPhong;
 
-    public Phong(Integer MaPhong, String TenPhong, String SdtPhong, String DiachiPhong) {
+    public Phong(long MaPhong, String TenPhong, String SdtPhong, String DiachiPhong) {
         this.MaPhong = MaPhong;
         this.TenPhong = TenPhong;
         this.SdtPhong = SdtPhong;
         this.DiachiPhong = DiachiPhong;
     }
 
-    public Integer getMaPhong() {
+    public long getMaPhong() {
         return MaPhong;
     }
 
-    public void setMaPhong(Integer MaPhong) {
+    public void setMaPhong(long MaPhong) {
         this.MaPhong = MaPhong;
     }
 

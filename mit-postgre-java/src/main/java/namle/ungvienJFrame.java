@@ -6,22 +6,21 @@
 package namle;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import namle.model.NhanVien;
-import namle.service.NhanVienSerrvice;
+import namle.model.UngVien;
+import namle.service.UngVienService;
 import java.lang.Math; 
+import java.util.*;
 import namle.helper.util;
 /**
  *
  * @author Nam Le
  */
-public class nhanvienJFrame extends javax.swing.JFrame {
+public class ungvienJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form nhanvienJFrame
      */
-    public nhanvienJFrame() {
+    public ungvienJFrame() {
         initComponents();
     }
 
@@ -38,33 +37,29 @@ public class nhanvienJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnHuybo = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         txtSdt = new javax.swing.JTextField();
         txtDiachi = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
-        txtHo = new javax.swing.JTextField();
-        chkTrangthai = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setName("nhanvienjFrame"); // NOI18N
         setResizable(false);
 
-        jLabel1.setText("Họ");
+        jLabel1.setText("Tên");
 
-        jLabel2.setText("Tên");
+        jLabel2.setText("Email");
 
         jLabel3.setText("Địa chỉ");
 
         jLabel4.setText("Số điện thoại");
 
-        jLabel5.setText("Trạng thái");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Thêm Nhân viên");
+        jLabel6.setText("Thêm Ứng viên");
 
         btnHuybo.setText("Hủy bỏ");
         btnHuybo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -79,8 +74,6 @@ public class nhanvienJFrame extends javax.swing.JFrame {
                 btnLuuMouseClicked(evt);
             }
         });
-
-        chkTrangthai.setText("Trạng thái");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,11 +97,11 @@ public class nhanvienJFrame extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtHo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -119,12 +112,6 @@ public class nhanvienJFrame extends javax.swing.JFrame {
                                         .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(chkTrangthai)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,11 +121,11 @@ public class nhanvienJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -149,13 +136,9 @@ public class nhanvienJFrame extends javax.swing.JFrame {
                     .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(chkTrangthai))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLuu)
                     .addComponent(btnHuybo))
-                .addGap(11, 11, 11))
+                .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleName("nhanvienjFrame");
@@ -174,23 +157,24 @@ public class nhanvienJFrame extends javax.swing.JFrame {
     }
     
     private void btnLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLuuMouseClicked
-        double rand = Math.random(); 
-        String ma = Double.toString(rand);
-        String ho = txtHo.getText();
+        long ma = util.getCurrentTimeMilliseconds();
         String ten = txtTen.getText();
+        String email = txtEmail.getText();
         String dc = txtDiachi.getText();
         String sdt = txtSdt.getText();
-        NhanVien nv = new NhanVien(ma, ho, ten, dc, sdt, "Hoạt động");
+        java.sql.Date ngay = util.getCurrentDate();
+        //Date ngay = (util.dateTimeToDateTime(util.getCurrentDateTimeToString()));
+        UngVien nv = new UngVien(ma, ten, email, sdt, dc, ngay );
         try {
-            NhanVien insert = new NhanVienSerrvice().addNew(nv);
+            UngVien insert = new UngVienService().addNew(nv);
             if (insert != null) {
-                util.showMessageBox(this, "Thêm Nhân viên hoàn tất");
+                util.showMessageBox(this, "Thêm Ứng viên hoàn tất");
                 closeForm();
             }
         } catch (SQLException ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!");
+            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
         } catch (Exception ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!");
+            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
         }
     }//GEN-LAST:event_btnLuuMouseClicked
 
@@ -211,20 +195,21 @@ public class nhanvienJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(nhanvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ungvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(nhanvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ungvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(nhanvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ungvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(nhanvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ungvienJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new nhanvienJFrame().setVisible(true);
+                new ungvienJFrame().setVisible(true);
             }
         });
     }
@@ -232,15 +217,13 @@ public class nhanvienJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuybo;
     private javax.swing.JButton btnLuu;
-    private javax.swing.JCheckBox chkTrangthai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtDiachi;
-    private javax.swing.JTextField txtHo;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtSdt;
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables

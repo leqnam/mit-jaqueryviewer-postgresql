@@ -10,7 +10,7 @@ package namle.model;
  * @author Nam Le
  */
 public class TuyenDung {
-    private Integer MaPhong;
+    private long MaPhong;
     private String MaNhanVien;
     private String GhiChu;
     private Integer MaUngVien;

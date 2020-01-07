@@ -21,7 +21,7 @@ public class PhongService {
         Connection connection = connector.getConnection();
         String sql = "INSERT INTO public.\"Phong\"(\"MaPhong\", \"TenPhong\", \"SdtPhong\", \"DiachiPhong\") VALUES(?,?,?,?)";
         PreparedStatement ps = connection.prepareCall(sql);
-        ps.setInt(1, p.getMaPhong());
+        ps.setLong(1, p.getMaPhong());
         ps.setString(2, p.getTenPhong());
         ps.setString(3, p.getSdtPhong());
         ps.setString(4, p.getDiachiPhong());
