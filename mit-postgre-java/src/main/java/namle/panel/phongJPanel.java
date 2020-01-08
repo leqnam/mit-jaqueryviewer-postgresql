@@ -3,33 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package namle;
+package namle.panel;
 
 import java.sql.SQLException;
+import namle.model.Phong;
 import namle.service.PhongService;
+import java.lang.Math; 
 import java.sql.ResultSet;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
 import namle.helper.util;
 import static namle.helper.util.buildTableModel;
-import namle.model.Phong;
+
 /**
  *
- * @author Nam Le
+ * @author leqna
  */
-public class phongJFrame extends javax.swing.JFrame {
+public class phongJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form nhanvienJFrame
-     */
-    public phongJFrame() {
+    PhongService service;
+            
+    public phongJPanel() throws Exception {
+        
         initComponents();
         try {
-            PhongService service = new PhongService();
+            service = new PhongService();
             ResultSet rs = service.danhSachPhong();
             jTable.setModel(buildTableModel(rs));
         } catch (Exception ex) {
-            util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
-            
+            Logger.getLogger(phongJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     /**
@@ -41,6 +47,7 @@ public class phongJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnHuybo = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
@@ -51,13 +58,10 @@ public class phongJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
 
-        setTitle("Phòng");
-        setAlwaysOnTop(true);
-        setName("nhanvienjFrame"); // NOI18N
-        setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
+        setName("uvp"); // NOI18N
+
+        jLabel4.setText("Số điện thoại");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Phòng");
@@ -93,10 +97,8 @@ public class phongJFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable);
 
-        jLabel4.setText("Số điện thoại");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -157,17 +159,17 @@ public class phongJFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        getAccessibleContext().setAccessibleName("nhanvienjFrame");
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHuyboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyboMouseClicked
         closeForm();
     }//GEN-LAST:event_btnHuyboMouseClicked
 
+    private void closeForm() {
+        setVisible(false); 
+        //remove(ungvienJPanel);
+    }
+    
     private void btnLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLuuMouseClicked
         long ma = util.getCurrentTimeMilliseconds();
         String ten = txtTen.getText();
@@ -175,14 +177,14 @@ public class phongJFrame extends javax.swing.JFrame {
         String sdt = txtSdt.getText();
         Phong p = new Phong(ma, ten, sdt, dc);
         if (ten.isEmpty() || dc.isEmpty() || sdt.isEmpty())
-        util.showMessageBox(this, "Không được rỗng!");
+            util.showMessageBox(this, "Không được rỗng!");
         else {
             try {
-                Phong insert = new PhongService().addNew(p);
-                if (insert != null) {
-                    util.showMessageBox(this, "Thêm Phòng hoàn tất");
-                    closeForm();
-                }
+            Phong insert = new PhongService().addNew(p);
+            if (insert != null) {
+                util.showMessageBox(this, "Thêm Phòng hoàn tất");
+                closeForm();
+            }
             } catch (SQLException ex) {
                 util.showMessageBox(this, "Đã có lỗi xảy ra!" + ex.toString());
             } catch (Exception ex) {
@@ -191,46 +193,6 @@ public class phongJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLuuMouseClicked
 
-    private void closeForm() {
-        setVisible(false); 
-        dispose(); 
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(phongJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(phongJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(phongJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(phongJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new phongJFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuybo;

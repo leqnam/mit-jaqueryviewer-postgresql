@@ -5,13 +5,11 @@
  */
 package namle;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import namle.helper.animate.Animate;
-import namle.panel.ungvienJPanel;
 
 /**
  *
@@ -19,13 +17,14 @@ import namle.panel.ungvienJPanel;
  */
 public class mainJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mainJFrame
-     */
+    private JPanel panel = new JPanel();
+    private JScrollPane sp = new JScrollPane(panel);
+    
     public mainJFrame() {
         initComponents();
         //setLayout(new BorderLayout());
-
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane.validate();
     }
 
     /**
@@ -41,26 +40,28 @@ public class mainJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnThemPhong = new javax.swing.JButton();
+        jScrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empoyee Query Viewer");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("mainF"); // NOI18N
+        setResizable(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Quản trị Nhân viên");
+        jLabel6.setText("View");
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        jButton1.setText("Thêm Ứng viên");
+        jButton1.setText("Ứng viên");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
 
-        btnThemPhong.setText("Thêm Phòng");
+        btnThemPhong.setText("Phòng");
         btnThemPhong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnThemPhongMouseClicked(evt);
@@ -74,9 +75,9 @@ public class mainJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                     .addComponent(btnThemPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,8 +86,10 @@ public class mainJFrame extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnThemPhong)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
+
+        jScrollPane.setBorder(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,10 +98,11 @@ public class mainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addGap(502, 511, Short.MAX_VALUE))
+                .addGap(574, 610, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,28 +110,36 @@ public class mainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane)))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void showPanel(JPanel pn) {
+        
+//        ungvienJFrame nvForm = new ungvienJFrame();
+//        nvForm.pack();
+//        nvForm.show();
 
-        ungvienJFrame nvForm = new ungvienJFrame();
-        nvForm.pack();
-        nvForm.show();
-
-//        ungvienJPanel uvp = new ungvienJPanel();
-//        add(uvp, BorderLayout.CENTER);
+//        uvp.setSize(new Dimension(386, 237));
+//        jScrollPane.add(uvp);
 //        setVisible(true);
-//        uvp.setSize(500, 500);
+        
 //        setLayout(new GridLayout());
 //        Rectangle from = new Rectangle(100,100, uvp.getWidth(), uvp.getHeight());
 //        Rectangle to = new Rectangle(110, 110, uvp.getWidth(), uvp.getHeight());
 //        Animate animate = new Animate(uvp, to, from);
 //        animate.start();
+    }
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        ungvienJFrame pForm = new ungvienJFrame();
+        pForm.pack();
+        pForm.show();
+        
     }//GEN-LAST:event_jButton1MouseClicked
 //        
     private void btnThemPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemPhongMouseClicked
@@ -176,5 +188,6 @@ public class mainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane;
     // End of variables declaration//GEN-END:variables
 }

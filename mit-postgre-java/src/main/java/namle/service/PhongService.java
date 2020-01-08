@@ -7,7 +7,9 @@ package namle.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import namle.helper.connector;
 import namle.model.Phong;
 
@@ -30,5 +32,14 @@ public class PhongService {
         return p;
     }
     
-    
+    public ResultSet danhSachPhong() throws Exception {
+
+        Connection connection = connector.getConnection();
+        String sql = "SELECT * FROM public.\"Phong\"";
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(sql);
+
+        connection.close();
+        return rs;
+    }
 }
