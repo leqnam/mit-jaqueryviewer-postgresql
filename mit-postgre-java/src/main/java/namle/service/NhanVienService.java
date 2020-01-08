@@ -12,35 +12,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import namle.helper.connector;
-import namle.model.UngVien;
 
 /**
  *
  * @author Nam Le
  */
-public class UngVienService {
+public class NhanVienService {
+    
+    public ResultSet khenThuongKyLuat() throws Exception {
 
-    public UngVien addNew(UngVien nv) throws SQLException, Exception {
         Connection connection = connector.getConnection();
-        String sql = "INSERT INTO public.\"UngVien\" VALUES(?,?,?,?,?,?)";
-        PreparedStatement ps = connection.prepareCall(sql);
-        ps.setLong(1, nv.getMaUngVien());
-        ps.setString(2, nv.getTenUngVien());
-        ps.setString(3, nv.getEmailUngVien());
-        ps.setString(4, nv.getSdtUngVien());
-        ps.setString(5, nv.getDiaChiUngVien());
-        ps.setDate(6, (java.sql.Date) nv.getNgayNop());
-        ps.executeUpdate();
+        String sql = "SELECT * FROM public.\"KhenThuongKyLuat\"";
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(sql);
         connection.close();
-        return nv;
+        return rs;
     }
-
-    public ResultSet danhSachUngVien() throws Exception {
+    
+    public ResultSet danhSachkhenThuongKyLuat(String id) throws Exception {
 
         Connection connection = connector.getConnection();
-        String sql = "SELECT * FROM public.\"UngVien\"";
+        String sql = "SELECT a.\"MaNhanVien\", a.ho, a.ten, b.\"NoiDungKTKL\" FROM \"NhanVien\" a, \"KhenThuongKyLuat_CaNhan\" b, \"KhenThuongKyLuat\" c WHERE a.\"MaNhanVien\" = b.\"MaNhanVien\" AND b.\"MaLoaiKTKL\" = c.\"MaLoaiKTKL\" AND c.\"MaLoaiKTKL\" = " + id;
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(sql);
 
