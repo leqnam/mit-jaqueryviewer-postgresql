@@ -5,18 +5,11 @@
  */
 package namle;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import namle.helper.animate.Animate;
-import namle.panel.phongJPanel;
-import namle.panel.ungvienJPanel;
 
 /**
  *
@@ -26,8 +19,7 @@ public class mainJFrame extends javax.swing.JFrame {
 
     private JPanel panel = new JPanel();
     private JScrollPane sp = new JScrollPane(panel);
-    public ungvienJPanel uvp;
-    public phongJPanel p; 
+    
     public mainJFrame() {
         initComponents();
         //setLayout(new BorderLayout());
@@ -94,7 +86,7 @@ public class mainJFrame extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnThemPhong)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         jScrollPane.setBorder(null);
@@ -106,7 +98,7 @@ public class mainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addGap(574, 856, Short.MAX_VALUE))
+                .addGap(574, 610, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,32 +136,16 @@ public class mainJFrame extends javax.swing.JFrame {
 //        animate.start();
     }
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        jScrollPane.removeAll();
-        try {
-            uvp = new ungvienJPanel();
-            uvp.setSize(new Dimension(586, 500));
-        jScrollPane.add(uvp);
-        setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(mainJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ungvienJFrame pForm = new ungvienJFrame();
+        pForm.pack();
+        pForm.show();
         
     }//GEN-LAST:event_jButton1MouseClicked
 //        
     private void btnThemPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemPhongMouseClicked
-//        phongJFrame pForm = new phongJFrame();
-//        pForm.pack();
-//        pForm.show();
-        jScrollPane.removeAll();
-        try {
-            p = new phongJPanel();
-            p.setSize(new Dimension(586, 500));
-        jScrollPane.add(p);
-        setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(mainJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        phongJFrame pForm = new phongJFrame();
+        pForm.pack();
+        pForm.show();
     }//GEN-LAST:event_btnThemPhongMouseClicked
 
     /**

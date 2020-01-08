@@ -16,7 +16,7 @@ public class connector {
     public static Connection getConnection() throws Exception {
         String dbName = "mit", user = "mit", pwd = "!1234";
         Class.forName("org.postgresql.Driver");
-        return (conn==null) ? conn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + dbName, user, pwd) : conn;
+        return conn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + dbName, user, pwd);
     }
     
     public static void resetConnection() {
