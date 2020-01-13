@@ -20,26 +20,26 @@ import namle.model.Phong;
 public class PhongService {
     
     public Phong addNew(Phong p) throws SQLException, Exception {
-        Connection connection = connector.getConnection();
-        String sql = "INSERT INTO public.\"Phong\"(\"MaPhong\", \"TenPhong\", \"SdtPhong\", \"DiachiPhong\") VALUES(?,?,?,?)";
-        PreparedStatement ps = connection.prepareCall(sql);
-        ps.setLong(1, p.getMaPhong());
-        ps.setString(2, p.getTenPhong());
-        ps.setString(3, p.getSdtPhong());
-        ps.setString(4, p.getDiachiPhong());
-        ps.executeUpdate();
-        connection.close();
-        return p;
+//        Connection connection = connector.getConnection();
+//        String sql = "INSERT INTO public.\"MIT_Phong\"(\"MaPhong\", \"TenPhong\", \"SdtPhong\", \"DiachiPhong\") VALUES(?,?,?,?)";
+//        PreparedStatement ps = connection.prepareCall(sql);
+//        ps.setLong(1, p.getMaPhong());
+//        ps.setString(2, p.getTenPhong());
+//        ps.setString(3, p.getSdtPhong());
+//        ps.setString(4, p.getDiachiPhong());
+//        ps.executeUpdate();
+//        connection.close();
+        return null;
     }
     
     public ResultSet danhSachPhong() throws Exception {
 
-        Connection connection = connector.getConnection();
-        String sql = "SELECT * FROM public.\"Phong\"";
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(sql);
-
-        connection.close();
-        return rs;
+//        Connection connection = connector.getConnection();
+//        String sql = "SELECT * FROM public.\"MIT_Phong\"";
+//        Statement stm = connection.createStatement();
+//        ResultSet rs = stm.executeQuery(sql);
+//
+//        connection.close();
+       return null;
     }
 }

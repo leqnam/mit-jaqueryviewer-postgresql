@@ -13,10 +13,10 @@ import java.sql.DriverManager;
  */
 public class connector {
     private static Connection conn = null;
-    public static Connection getConnection() throws Exception {
-        String dbName = "mit", user = "mit", pwd = "!1234";
+    public static Connection getConnection(String host, String dbName, String user, String pwd) throws Exception {
+        // String dbName = "mit", user = "mit", pwd = "!1234";
         Class.forName("org.postgresql.Driver");
-        return conn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + dbName, user, pwd);
+        return conn=DriverManager.getConnection("jdbc:postgresql://" + host + "/" + dbName, user, pwd);
     }
     
     public static void resetConnection() {

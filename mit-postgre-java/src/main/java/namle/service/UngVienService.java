@@ -23,29 +23,29 @@ import namle.model.UngVien;
 public class UngVienService {
 
     public UngVien addNew(UngVien nv) throws SQLException, Exception {
-        Connection connection = connector.getConnection();
-        String sql = "INSERT INTO public.\"UngVien\" VALUES(?,?,?,?,?,?)";
-        PreparedStatement ps = connection.prepareCall(sql);
-        ps.setLong(1, nv.getMaUngVien());
-        ps.setString(2, nv.getTenUngVien());
-        ps.setString(3, nv.getEmailUngVien());
-        ps.setString(4, nv.getSdtUngVien());
-        ps.setString(5, nv.getDiaChiUngVien());
-        ps.setDate(6, (java.sql.Date) nv.getNgayNop());
-        ps.executeUpdate();
-        connection.close();
-        return nv;
+//        Connection connection = connector.getConnection();
+//        String sql = "INSERT INTO public.\"MIT_UngVien\" VALUES(?,?,?,?,?,?)";
+//        PreparedStatement ps = connection.prepareCall(sql);
+//        ps.setLong(1, nv.getMaUngVien());
+//        ps.setString(2, nv.getTenUngVien());
+//        ps.setString(3, nv.getEmailUngVien());
+//        ps.setString(4, nv.getSdtUngVien());
+//        ps.setString(5, nv.getDiaChiUngVien());
+//        ps.setDate(6, (java.sql.Date) nv.getNgayNop());
+//        ps.executeUpdate();
+//        connection.close();
+        return null;
     }
 
     public ResultSet danhSachUngVien() throws Exception {
 
-        Connection connection = connector.getConnection();
-        String sql = "SELECT * FROM public.\"UngVien\"";
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(sql);
-
-        connection.close();
-        return rs;
+//        Connection connection = connector.getConnection();
+//        String sql = "SELECT * FROM public.\"MIT_UngVien\"";
+//        Statement stm = connection.createStatement();
+//        ResultSet rs = stm.executeQuery(sql);
+//
+//        connection.close();
+        return null;
     }
     
 }
