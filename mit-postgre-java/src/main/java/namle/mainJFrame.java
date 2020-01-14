@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import namle.helper.animate.Animate;
+import namle.helper.constant;
 import namle.helper.util;
 import static namle.helper.util.buildTableModel;
 import namle.service.QueryService;
@@ -241,9 +242,7 @@ public class mainJFrame extends javax.swing.JFrame {
 //        animate.start();
     }//        
     private void getAllTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllTableBtnActionPerformed
-        String sql = "SELECT table_schema, table_name \n" +
-        "FROM information_schema.tables \n" +
-        "WHERE table_name ~ '^MIT_'";
+        String sql = constant.listTables();
         jTextArea.setText(sql);
         try {
             QueryService service = new QueryService();
